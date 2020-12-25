@@ -1,24 +1,29 @@
-import 'dotenv/config';
-import express, { Express } from "express"
-import cors from "cors";
-import bodyParser from "body-parser";
-import mongoInstance from "./database";
+import 'dotenv/config'
+import express from 'express'
+import cors from 'cors'
+import 'reflect-metadata'
+import bodyParser from 'body-parser'
+import mongoInstance from './database'
 import RoutesRoot from './routes'
 
-const app: Express = express();
+const app = express()
+const mongodb = process.env.MONGO_SERVER || ''
+const PORT: string | number = process.env.PORT || 3000
 
-const PORT: string | number  = process.env.PORT || 3000;
+app.use(cors())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/', RoutesRoot.initRoutes())
 
-app.use('/',  RoutesRoot.initRoutes())
+app.use(cors())
+mongoInstance(mongodb)
 
-app.use(cors());
-mongoInstance('testemongodb+srv://claudiocantara:p02zon5gNM8v7cwZ@cluster0.f9sbs.mongodb.net/teste?retryWrites=true&w=majority')
-
-app.listen(PORT, () => {
-  console.log(`Lisnten at port ${PORT}, have fun!`)
+app.use('*', (req, res) => {
+  res.status(404)
+  res.json({ message: 'Not found' })
 })
 
+app.listen(PORT, () => {
+  console.log(`Lisnten at port ${PORT} , have fun!`)
+})

@@ -1,7 +1,7 @@
 {
-  "name": "node-ts-monorepo-project",
+  "name": "node-ts-project",
   "version": "1.0.0",
-  "description": "project using monorepo",
+  "description": "node ts project, for study reason",
   "main": "index.js",
   "license": "MIT",
   "author": {
