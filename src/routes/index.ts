@@ -3,7 +3,7 @@ import { routeNameMetadataKey } from './../resources/Decorators/route'
 import { Router } from 'express'
 import fs from 'fs'
 
-export abstract class CreateRouter {
+abstract class CreateRouter {
   route: Router;
 
   constructor (app: Router) {
@@ -35,3 +35,4 @@ class RouterRoot {
 }
 
 export default RouterRoot
+export { CreateRouter }
