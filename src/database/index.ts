@@ -1,22 +1,22 @@
-import { connect, connection } from "mongoose";
+import { connect, connection } from 'mongoose'
 
 export default (db: string) => {
   const initCon = () => {
     connect(
-      db, 
-      { useNewUrlParser: true,
+      db,
+      {
+        useNewUrlParser: true,
         useUnifiedTopology: true
       }
-      ) 
+    )
       .then(() => console.log('Mongo Connected'))
       .catch((error) => {
-        console.log(error);
-        return process.exit(1);
+        console.log(error)
+        return process.exit(1)
       })
   }
 
-  initCon();
+  initCon()
 
-  connection.on('disconnected',  initCon);
-
+  connection.on('disconnected', initCon)
 }

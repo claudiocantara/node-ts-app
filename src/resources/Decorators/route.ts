@@ -1,6 +1,7 @@
 
-export function Route(route: string): ClassDecorator {
+export const routeNameMetadataKey = Symbol('routeName')
+export function Route (route: string): ClassDecorator {
   return (target) => {
-    Reflect.defineMetadata("routeName", route, target.prototype);
+    Reflect.defineMetadata(routeNameMetadataKey, route, target.prototype)
   }
 }
