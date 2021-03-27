@@ -1,13 +1,14 @@
 import { CreateRouter } from './index'
-import { UserController } from '../controllers/user.controller'
+import { UserController } from '../controllers/user/user.controller'
 import { Route } from '../resources/Decorators'
 
 @Route('user')
 class UserRoute extends CreateRouter {
-  startRoutes () {
+  startRoutes() {
     const userController = new UserController()
 
-    this.route.get('/', userController.teste)
+    this.route.get('/', userController.list)
+    this.route.post('/', userController.create)
   };
 }
 

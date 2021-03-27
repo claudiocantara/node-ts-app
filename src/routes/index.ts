@@ -1,4 +1,3 @@
-/* eslint-disable new-cap */
 import { routeNameMetadataKey } from './../resources/Decorators/route'
 import { Router } from 'express'
 import fs from 'fs'
@@ -6,24 +5,23 @@ import fs from 'fs'
 abstract class CreateRouter {
   route: Router;
 
-  constructor (app: Router) {
+  constructor(app: Router) {
     this.route = Router()
     const route = Reflect.getMetadata(routeNameMetadataKey, this)
     app.use('/' + route, this.route)
     this.startRoutes()
   }
 
-  abstract startRoutes(): void;
+  abstract startRoutes(): void
 }
 
 const injectRouter = async <T extends string, Router>(file: T, app: Router) => {
   const Routes = await import(`./${file}`)
-  // eslint-disable-next-line no-new
   new Routes.default(app)
 }
 
 class RouterRoot {
-  static initRoutes (): Router {
+  static initRoutes(): Router {
     const app = Router()
 
     fs.readdirSync(__dirname)
