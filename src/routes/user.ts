@@ -9,7 +9,7 @@ class UserRoute extends CreateRouter {
 
     this.route.get('/', userController.list)
     this.route.post('/', userController.create)
-  };
+  }
 }
 
 export default UserRoute

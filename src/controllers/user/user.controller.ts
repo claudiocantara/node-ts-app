@@ -2,7 +2,7 @@ import { Request, Response } from 'express'
 import { UserModel } from './user.schema'
 
 export class UserController {
-  async list(req: Request, res: Response) {
+  async list(_req: Request, res: Response) {
     const users = await UserModel.find()
     return res.json(users).status(200)
   }
@@ -13,7 +13,7 @@ export class UserController {
     try {
       const user = await UserModel.create({
         name: body.name,
-        birth_date: body.birth_date
+        birth_date: body.birth_date,
       })
       if (!user) {
         return res.json({ message: 'Something went wrong' }).status(400)

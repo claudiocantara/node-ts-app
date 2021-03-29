@@ -1,9 +1,8 @@
 import { routeNameMetadataKey } from './../resources/Decorators/route'
 import { Router } from 'express'
 import fs from 'fs'
-
 abstract class CreateRouter {
-  route: Router;
+  route: Router
 
   constructor(app: Router) {
     this.route = Router()
@@ -25,8 +24,8 @@ class RouterRoot {
     const app = Router()
 
     fs.readdirSync(__dirname)
-      .filter(file => file !== 'index.ts')
-      .forEach(file => injectRouter(file, app))
+      .filter((file) => file !== 'index.ts')
+      .forEach((file) => injectRouter(file, app))
 
     return app
   }
